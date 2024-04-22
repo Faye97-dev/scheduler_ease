@@ -1,0 +1,33 @@
+{
+  "name": "schedule_ease",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.30.9",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@types/pg": "^8.11.5",
+    "drizzle-kit": "^0.20.17",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+  },
+  "packageManager": "npm@10.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

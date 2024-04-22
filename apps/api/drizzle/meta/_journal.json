@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1713756958597,
+      "tag": "0000_stiff_secret_warriors",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1713757089394,
+      "tag": "0001_brief_gambit",
+      "breakpoints": true
+    }
+  ]
+}
