@@ -1,3 +1,12 @@
+CREATE TABLE IF NOT EXISTS "users" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"full_name" varchar(256) NOT NULL,
+	"email" varchar(256) NOT NULL,
+	"created_date" timestamp DEFAULT now() NOT NULL,
+	"updated_date" timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT "users_email_unique" UNIQUE("email")
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "meetings" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"title" varchar(256) NOT NULL,
@@ -10,12 +19,11 @@ CREATE TABLE IF NOT EXISTS "meetings" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "participants" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"meet_id" uuid NOT NULL,
 	"email" varchar(256) NOT NULL,
 	"created_date" timestamp DEFAULT now() NOT NULL,
 	"updated_date" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "participants_email_unique" UNIQUE("email")
+	CONSTRAINT "participants_meet_id_email_pk" PRIMARY KEY("meet_id","email")
 );
 --> statement-breakpoint
 DO $$ BEGIN

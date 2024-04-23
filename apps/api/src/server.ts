@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import router from '@/routes/meetings.route'
+import authRouter from '@/routes/auth.route'
 
 const createServer = () => {
   const app = express();
@@ -13,7 +14,8 @@ const createServer = () => {
     .use(json())
     .use(cors())
     .get("/health-check", async (_, res) => res.json({ ok: true }))
-    .use("/api/meetings", router);
+    .use("/api/meetings", router)
+    .use("/api/auth", authRouter);
 
   return app;
 };

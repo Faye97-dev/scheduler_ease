@@ -1,23 +1,23 @@
-import { eq } from 'drizzle-orm';
-
+// @ts-nocheck
 import { db } from '@/db/client';
 import { NotFoundError } from '@/lib/errors';
-import { meetings } from '@repo/shared';
+import { UserWithMeetingType } from '@/types';
 
-export const getMeetingsByUser = async (userId: string) => {
-    const meetings = await db.query.meetings.findMany({
-        // where: (meetings, { eq }) => eq(meetings.title, userId), // todo fixme
-        with: { user: true, participants: true },
+export const findUserMeetings = async (userId: string) => {
+    if (!userId) throw new NotFoundError('Undefined user id');
 
+    const userWithMeetings: UserWithMeetingType = await db.query.users.findFirst({
+        where: (users, { eq }) => eq(users.id, userId),
+        with: {
+            meetings: {
+                with: { participants: true },
+                orderBy: (meetings, { asc }) => [asc(meetings.startDate)],
+            },
+
+        },
     })
-    return meetings
+
+    if (!userWithMeetings) throw new NotFoundError('Meeting not found');
+
+    return userWithMeetings
 };
-
-// todo fixme
-export const getMeetingById = async (meetingId: string) => {
-    const [meeting] = await db.select().from(meetings).where(eq(meetings.id, meetingId)).limit(1);
-    if (!meeting) throw new NotFoundError('Meeting not found');
-
-    return meeting;
-};
-
