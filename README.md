@@ -25,7 +25,7 @@ Start postgres database
 docker-compose up -d
 ```
 
-Push migrations to postgres databse
+Push migrations to postgres database
 
 ```sh
 cd apps/api && npm run migrate:push --workspace=api
@@ -37,5 +37,5 @@ Run apps
 npm run dev
 ```
 
-After running apps update BASE_URL in this apps/native/config/index.ts with Ip address provided by expo client
+After running apps update BASE_URL in this "apps/native/config/index.ts" with ip address provided by expo client
 
