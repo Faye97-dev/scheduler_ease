@@ -19,7 +19,7 @@ Build shared package
 cd packages/shared && npm run build
 ```
 
-Start postgres databse
+Start postgres database
 
 ```sh
 docker-compose up -d
