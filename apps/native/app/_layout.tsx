@@ -5,12 +5,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+export { ErrorBoundary } from "expo-router";
 
-// todo fixme
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: "/home",
@@ -43,12 +39,10 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
-// todo clean
 function RootLayoutNav() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="new-meet" options={{ presentation: "modal" }} />
       </Stack>
     </ThemeProvider>

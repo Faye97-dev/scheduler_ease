@@ -1,3 +1,5 @@
+export const QUERY_MEETINGS_LIST = "QUERY_MEETINGS_LIST"
+
 export const COLORS = {
     "antiflash-white": "#e7ecefff",
     "yinmn-blue": "#274c77ff",
@@ -29,15 +31,3 @@ export const THEME = {
     },
 };
 
-
-// todo
-/* SCSS Gradient */
-// $gradient-top: linear-gradient(0deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-right: linear-gradient(90deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-bottom: linear-gradient(180deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-left: linear-gradient(270deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-top-right: linear-gradient(45deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-bottom-right: linear-gradient(135deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-top-left: linear-gradient(225deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-bottom-left: linear-gradient(315deg, #e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);
-// $gradient-radial: radial-gradient(#e7ecefff, #274c77ff, #6096baff, #a3cef1ff, #8b8c89ff);

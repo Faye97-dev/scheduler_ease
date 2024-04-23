@@ -1,32 +1,57 @@
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, ScrollView, StyleSheet } from "react-native";
 
-import EditScreenInfo from "@/components/EditScreenInfo";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import { Stack, router } from "expo-router";
+import AddMeetForm from "@/components/screens/form-add-meet/AddMeetForm";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { COLORS } from "@/constants";
+import { useEffect, useState } from "react";
+import { IUserInfo, secureStoreGet } from "@/lib/session";
+
+const queryClient = new QueryClient();
 
 export default function ModalScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
-      <View style={styles.separator} />
-      <EditScreenInfo path="app/modal.tsx" />
+  const [session, setSession] = useState<IUserInfo | null>(null);
 
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
-    </View>
+  useEffect(() => {
+    secureStoreGet("session").then((res: any) => {
+      if (!res) router.push("/login");
+      else setSession(JSON.parse(res));
+    });
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <View style={styles.container}>
+        <Stack.Screen
+          options={{
+            headerShadowVisible: false,
+            headerTitle: "Add a meeting",
+          }}
+        />
+        <ScrollView
+          style={{ width: "100%" }}
+          showsVerticalScrollIndicator={false}
+        >
+          <AddMeetForm session={session} />
+          <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
+        </ScrollView>
+      </View>
+    </QueryClientProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    padding: 10,
+    width: "100%",
+    alignItems: "flex-start",
     justifyContent: "center",
+    backgroundColor: COLORS["antiflash-white"],
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
+  title: { fontSize: 18 },
   separator: {
     marginVertical: 30,
     height: 1,
