@@ -31,10 +31,10 @@ Push migrations to postgres database
 cd apps/api && npm run migrate:push --workspace=api
 ```
 
-Run apps
+go to root folder and run all apps
 
 ```sh
-npm run dev
+cd ../.. && npm run dev
 ```
 
 After running apps update BASE_URL in this "apps/native/config/index.ts" with ip address provided by expo client
